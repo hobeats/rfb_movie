@@ -1,24 +1,37 @@
-import { useState, useEffect } from "react";
-
-function Hello() {
-  function byFn() {
-    console.log("Bye :(");
-  }
-  function hyFn() {
-    console.log("Hi~ :)");
-    return byFn;
-  }
-  useEffect(hyFn, []);
-  return <h1>Hello</h1>;
-}
+import { useEffect, useState } from "react";
+import Movie from "./Movie";
 
 function App() {
-  const [showing, setShowing] = useState(false);
-  const onClick = () => setShowing((prev) => !prev);
+  const [laoding, setLoading] = useState(true);
+  const [movies, setMovies] = useState([]);
+  const getMovies = async () => {
+    const json = await (
+      await fetch(
+        "https://yts.mx/api/v2/list_movies.json?minimum_rating=9&sort_by=rating"
+      )
+    ).json();
+    setMovies(json.data.movies);
+    setLoading(false);
+  };
+  useEffect(() => {
+    getMovies();
+  }, []);
   return (
     <div>
-      {showing ? <Hello /> : null}
-      <button onClick={onClick}>{showing ? "HIDE" : "SHOW"}</button>
+      {laoding ? (
+        <h1>Loading...</h1>
+      ) : (
+        <div>
+          {movies.map((movie) => (
+            <Movie
+              coverImg={movie.medium_cover_image}
+              title={movie.title}
+              summary={movie.summary}
+              genres={movie.genres}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
