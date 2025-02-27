@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/rfb_moive/static/js/main.43b9cb39.js",
+    "main.js": "/rfb_moive/static/js/main.d53145f4.js",
     "index.html": "/rfb_moive/index.html",
-    "main.43b9cb39.js.map": "/rfb_moive/static/js/main.43b9cb39.js.map"
+    "main.d53145f4.js.map": "/rfb_moive/static/js/main.d53145f4.js.map"
   },
   "entrypoints": [
-    "static/js/main.43b9cb39.js"
+    "static/js/main.d53145f4.js"
   ]
 }
